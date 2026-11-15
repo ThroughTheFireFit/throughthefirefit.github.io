@@ -189,11 +189,9 @@
   <section class="signup" aria-labelledby="signup-title">
     <h2 id="signup-title">BE THE FIRST TO KNOW</h2>
     <p>Launch day, new videos and the first merch drop, sent to your inbox.</p>
-    <!-- SIGNUP: this form is not connected yet. When the email service is chosen,
-         set the form's action to that service's address and remove the script at the bottom. -->
-    <form id="signup-form" action="#" method="post" novalidate>
+    <form id="signup-form" action="https://app.kit.com/forms/10195267/subscriptions" method="post" novalidate>
       <label for="signup-email">Email address</label>
-      <input id="signup-email" name="email" type="email" placeholder="Your email" autocomplete="email" required>
+      <input id="signup-email" name="email_address" type="email" placeholder="Your email" autocomplete="email" required>
       <button id="signup-button" type="submit">SIGN UP</button>
     </form>
     <p class="form-note" id="signup-note" role="status"></p>
@@ -212,17 +210,36 @@
 
 </main>
 <script>
-  // Placeholder until the email service is connected: nothing is saved yet.
-  document.getElementById('signup-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = document.getElementById('signup-email').value.trim();
+  // Sends the signup to Kit without leaving the page. If that fails, the form submits the normal way.
+  (function () {
+    var form = document.getElementById('signup-form');
     var note = document.getElementById('signup-note');
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      note.textContent = 'Enter a full email address, like name@example.com.';
-      return;
-    }
-    note.textContent = 'Preview only: signups are not being saved yet.';
-  });
+    var button = document.getElementById('signup-button');
+    form.addEventListener('submit', function (e) {
+      var email = document.getElementById('signup-email').value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        e.preventDefault();
+        note.textContent = 'Enter a full email address, like name@example.com.';
+        return;
+      }
+      if (!window.fetch || !window.FormData) { return; }
+      e.preventDefault();
+      button.disabled = true;
+      note.textContent = 'Signing you up...';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.status === 'success') {
+            form.reset();
+            note.textContent = 'You are in. Check your email to confirm your signup.';
+            button.disabled = false;
+          } else {
+            form.submit();
+          }
+        })
+        .catch(function () { form.submit(); });
+    });
+  })();
 </script>
 </body>
 </html>
