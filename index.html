@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Through The Fire</title>
+<meta name="description" content="Through The Fire. Faith, family, fitness. The only way out is through.">
+<meta property="og:title" content="Through The Fire">
+<meta property="og:description" content="Faith | Family | Fitness. The only way out is through.">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one narrow centered column, like a link page. Header, links, signup, shop note, footer. */
+  :root {
+    color-scheme: dark;
+    --bg: #0E0E0E;
+    --panel: #171615;
+    --line: #2B2927;
+    --bone: #EDE8DF;
+    --muted: #A39E95;
+    --fire: #D7261E;
+    --fire-hot: #EE3A31;
+    --display: "Anton", "Impact", "Arial Narrow Bold", sans-serif;
+    --body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--bone);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 56px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  /* Header */
+  .brand { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+  .brand svg { width: 132px; height: auto; display: block; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(40px, 11vw, 56px);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    margin: 10px 0 0;
+    text-wrap: balance;
+  }
+  .pillars {
+    font-family: var(--display);
+    font-size: 20px;
+    letter-spacing: 0.14em;
+    margin: 0;
+  }
+  .pillars span { color: var(--fire); padding: 0 0.45em; }
+  .slogan { margin: 0; font-size: 17px; font-weight: 500; }
+  .verse {
+    margin: 6px 0 0;
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    color: var(--fire);
+  }
+
+  /* Links */
+  .links { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  .links a {
+    display: block;
+    padding: 18px 16px;
+    background: var(--fire);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .links a:hover { background: var(--fire-hot); transform: translateY(-1px); }
+
+  /* Signup */
+  .signup, .shop {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    padding: 28px 22px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .signup p, .shop p { margin: 0; color: var(--muted); font-size: 15px; }
+  form { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+  form label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  input[type="email"] {
+    flex: 1 1 200px;
+    min-width: 0;
+    padding: 14px 14px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--bone);
+    font: inherit;
+    border-radius: 0;
+  }
+  input[type="email"]::placeholder { color: #777169; }
+  button {
+    flex: 0 0 auto;
+    padding: 14px 22px;
+    background: var(--bone);
+    color: var(--bg);
+    border: 0;
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  button:hover { background: #fff; }
+  .form-note { min-height: 1.4em; font-size: 14px; color: var(--bone); }
+  .tag {
+    align-self: center;
+    font-family: var(--display);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--fire);
+    border: 1px solid var(--fire);
+    padding: 4px 10px 3px;
+  }
+
+  footer { text-align: center; color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 4px; }
+  footer a { color: var(--bone); text-decoration: none; border-bottom: 1px solid var(--line); }
+  footer a:hover { border-color: var(--fire); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
+  @media (max-width: 400px) {
+    .page { padding-top: 40px; gap: 36px; }
+    .pillars { font-size: 17px; letter-spacing: 0.1em; }
+    button { flex: 1 1 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .links a { transition: none; } .links a:hover { transform: none; } }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3035 2517" role="img" aria-label="TTF logo">
+      <g transform="translate(112 2404)">
+        <path d="M229 0L229 -1422L20 -1422L20 -1760L790 -1760L790 -1422L581 -1422L581 0L229 0Z" fill="#D7261E"/>
+        <rect x="1261.5" y="-2292" width="352" height="2292" fill="#EDE8DF"/>
+        <rect x="892" y="-1760" width="1091" height="338" fill="#EDE8DF"/>
+        <path transform="translate(1993 0)" d="M78 0L78 -1760L782 -1760L782 -1417L432 -1417L432 -1137L764 -1137L764 -798L432 -798L432 0L78 0Z" fill="#D7261E"/>
+      </g>
+    </svg>
+    <h1>THROUGH THE FIRE</h1>
+    <p class="pillars">FAITH<span aria-hidden="true">|</span>FAMILY<span aria-hidden="true">|</span>FITNESS</p>
+    <p class="slogan">The only way out is through.</p>
+    <p class="verse">ISAIAH 43:2</p>
+  </header>
+
+  <nav aria-label="Social media">
+    <ul class="links">
+      <li><a href="https://www.tiktok.com/@through_the_fire_43.2" target="_blank" rel="noopener">TIKTOK</a></li>
+      <li><a href="https://www.instagram.com/through_the_fire_43.2" target="_blank" rel="noopener">INSTAGRAM</a></li>
+      <li><a href="https://www.youtube.com/@through_the_fire_43.2" target="_blank" rel="noopener">YOUTUBE</a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61596395737322" target="_blank" rel="noopener">FACEBOOK</a></li>
+      <li><a href="https://x.com/ThruTheFire432" target="_blank" rel="noopener">X</a></li>
+    </ul>
+  </nav>
+
+  <section class="signup" aria-labelledby="signup-title">
+    <h2 id="signup-title">BE THE FIRST TO KNOW</h2>
+    <p>Launch day, new videos and the first merch drop, sent to your inbox.</p>
+    <!-- SIGNUP: this form is not connected yet. When the email service is chosen,
+         set the form's action to that service's address and remove the script at the bottom. -->
+    <form id="signup-form" action="#" method="post" novalidate>
+      <label for="signup-email">Email address</label>
+      <input id="signup-email" name="email" type="email" placeholder="Your email" autocomplete="email" required>
+      <button id="signup-button" type="submit">SIGN UP</button>
+    </form>
+    <p class="form-note" id="signup-note" role="status"></p>
+  </section>
+
+  <section class="shop" aria-labelledby="shop-title">
+    <span class="tag">COMING SOON</span>
+    <h2 id="shop-title">MERCH STORE</h2>
+    <p>Sign up to get 48-hour early access and 10% off during launch week.</p>
+  </section>
+
+  <footer>
+    <span>Questions or collabs: <a href="mailto:contact@throughthefirefit.com">contact@throughthefirefit.com</a></span>
+    <span>&copy; 2026 Through The Fire</span>
+  </footer>
+
+</main>
+<script>
+  // Placeholder until the email service is connected: nothing is saved yet.
+  document.getElementById('signup-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('signup-email').value.trim();
+    var note = document.getElementById('signup-note');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      note.textContent = 'Enter a full email address, like name@example.com.';
+      return;
+    }
+    note.textContent = 'Preview only: signups are not being saved yet.';
+  });
+</script>
+</body>
+</html>
